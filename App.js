@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { movie } from './mockData';
@@ -24,8 +24,21 @@ export default class App extends React.Component {
       <AppContext.Provider value={{...this.state, handleSearchTermChange: this.handleSearchTermChange}}>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Welcome to the Movie Database" }}>
-            </Stack.Screen>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: "Welcome to the Movie Database",
+                headerStyle: {
+                  backgroundColor: 'teal',
+                },
+              }}
+            />
+            <Stack.Screen
+              name="Details"
+              component={DetailScreen}
+              options={( {route} ) => ({ title: `${route.params.movieTitle} - Details` })}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </AppContext.Provider>
@@ -35,37 +48,38 @@ export default class App extends React.Component {
 
 const Stack = createStackNavigator();
 
-const HomeScreen = ({ navigation, route }) => (
+const HomeScreen = ({ route, navigation }) => (
   <AppContext.Consumer>
     {(stateObject) => (
       <View style={styles.container}>
         <TextInput
-          placeholder="Search"
+          placeholder="Enter movie name"
           value={stateObject.searchTerm}
           onChangeText={stateObject.handleSearchTermChange}
         />
+        <Button
+          title="Search"
+          onPress={() => navigation.navigate('Details', {movieTitle: stateObject.movie.Title} )}
+        />
         <Result movie={stateObject.movie} />
-        <StatusBar style="auto" />
+        {/* <StatusBar style="auto" /> */}
       </View>
     )}
   </AppContext.Consumer>
 );
 
-{/*
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Search"
-        value={this.state.searchTerm}
-        onChangeText={this.handleSearchTermChange}
-      />
-      <Result movie={this.state.movie} />
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-*/}
+const DetailScreen = ({ route, navigation }) => (
+  <AppContext.Consumer>
+    {(stateObject) => (
+      <View style={styles.container}>
+        <Text>{route.params.movieTitle}</Text>
+        {/*<Result movie={stateObject.movie} />
+         <StatusBar style="auto" /> */}
+      </View>
+    )}
+  </AppContext.Consumer>
+);
+
 
 const styles = StyleSheet.create({
   container: {
