@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { movie } from './mockData';
 import Result from './Result'
+import DetailScreen from './screens/DetailScreen'
 
 const AppContext = React.createContext({});
 
@@ -50,7 +51,7 @@ export default class App extends React.Component {
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ route, navigation }) => (
-
+  // added here so we can have it interact with state later
   navigation.setOptions({
     headerRight: () => (
       <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
@@ -77,17 +78,17 @@ const HomeScreen = ({ route, navigation }) => (
   </AppContext.Consumer>
 );
 
-const DetailScreen = ({ route, navigation }) => (
-  <AppContext.Consumer>
-    {(stateObject) => (
-      <View style={styles.container}>
-        <Text>{route.params.movieTitle}</Text>
-        {/*<Result movie={stateObject.movie} />
-         <StatusBar style="auto" /> */}
-      </View>
-    )}
-  </AppContext.Consumer>
-);
+// const DetailScreen = ({ route, navigation }) => (
+//   <AppContext.Consumer>
+//     {(stateObject) => (
+//       <View style={styles.container}>
+//         <Text>{route.params.movieTitle}</Text>
+//         {/*<Result movie={stateObject.movie} />
+//          <StatusBar style="auto" /> */}
+//       </View>
+//     )}
+//   </AppContext.Consumer>
+// );
 
 
 const styles = StyleSheet.create({
