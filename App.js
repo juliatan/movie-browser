@@ -32,6 +32,7 @@ export default class App extends React.Component {
                 headerStyle: {
                   backgroundColor: 'teal',
                 },
+                
               }}
             />
             <Stack.Screen
@@ -49,7 +50,15 @@ export default class App extends React.Component {
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ route, navigation }) => (
+
+  navigation.setOptions({
+    headerRight: () => (
+      <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
+    ),
+  }),
+  
   <AppContext.Consumer>
+
     {(stateObject) => (
       <View style={styles.container}>
         <TextInput
