@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { movie } from '.././mockData';
 import Result from '.././Result'
-import { useNavigation } from '@react-navigation/native';
-
-
 
 class HomeScreen extends React.Component {
   state = {
@@ -17,9 +15,16 @@ class HomeScreen extends React.Component {
     this.setState({searchTerm})
   }
 
-
   render() {
-  const { navigation } = this.props;
+    // imported via useNavigation above. Needed to access navigation property onPress
+    const { navigation } = this.props;
+
+    navigation.setOptions({
+      headerRight: () => (
+        <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
+      ),
+    });
+
     return (
       <View style={styles.container}>
         <TextInput
@@ -38,33 +43,6 @@ class HomeScreen extends React.Component {
   }
 }
 
-// const HomeScreen = ({ route, navigation }) => (
-//   navigation.setOptions({
-//     headerRight: () => (
-//       <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
-//     ),
-//   }),
-  
-//   <AppContext.Consumer>
-
-//     {(stateObject) => (
-//       <View style={styles.container}>
-//         <TextInput
-//           placeholder="Enter movie name"
-//           value={stateObject.searchTerm}
-//           onChangeText={stateObject.handleSearchTermChange}
-//         />
-//         <Button
-//           title="Search"
-//           onPress={() => navigation.navigate('Details', {movie: stateObject.movie} )}
-//         />
-//         <Result movie={stateObject.movie} />
-//         {/* <StatusBar style="auto" /> */}
-//       </View>
-//     )}
-//   </AppContext.Consumer>
-// );
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,4 +53,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-// export default withNavigation(HomeScreen);
