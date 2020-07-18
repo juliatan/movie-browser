@@ -2,19 +2,14 @@ import 'react-native-gesture-handler';
 // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import Result from './Result'
+import Result from '.././Result'
 
-// NEXT STEP - HOW TO GET StateObject to show up here?
 const DetailScreen = ({ route, navigation }) => (
-  // <AppContext.Consumer>
-    // {(stateObject) => (
-      <View style={styles.container}>
-        <Text>{route.params.movieTitle}</Text>
-        {/*<Result movie={stateObject.movie} />
-         <StatusBar style="auto" /> */}
-      </View>
-    // )}
-  // </AppContext.Consumer>
+  <View style={styles.container}>
+    <Text>{route.params.movie.Title}</Text>
+    <Result movie={route.params.movie} />
+    {/* <StatusBar style="auto" /> */}
+  </View>
 );
 
 const styles = StyleSheet.create({
