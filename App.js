@@ -1,33 +1,28 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen'
-import DetailScreen from './screens/DetailScreen'
+import LoginScreen from './screens/LoginScreen';
+import LoggedInTabs from './screens/LoggedInTabs';
+
+// To do: figure out what import 'react-native-gesture-handler'; is for?
 
 export default class App extends React.Component {
-
   render() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
+            name="Login"
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name="LoggedIn"
+            component={LoggedInTabs}
             options={{
               title: "Welcome to the Movie Database",
               headerStyle: { backgroundColor: 'teal', },
             }}
-          />
-          <Stack.Screen
-            name="Details"
-            component={DetailScreen}
-            // note route.params comes from onPress button in Home screen
-            options={( {route} ) => ({ 
-              title: `${route.params.movie.Title} - Details`,
-              headerStyle: { backgroundColor: 'orange'}
-            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
