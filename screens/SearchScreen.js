@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { movie } from '.././mockData';
 import Result from '.././Result'
 
-class HomeScreen extends React.Component {
+class SearchScreen extends React.Component {
   state = {
     movie: movie,
     searchTerm: '',
@@ -37,6 +37,7 @@ class HomeScreen extends React.Component {
           onPress={() => navigation.navigate('Details', {movie: this.state.movie} )}
         />
         <Result movie={this.state.movie} />
+        {/* To do: Figure out what StatusBar is for */}
         {/* <StatusBar style="auto" /> */}
       </View>
     );
@@ -52,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default SearchScreen;
