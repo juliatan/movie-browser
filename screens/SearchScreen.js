@@ -3,11 +3,22 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { movie } from '../mockData';
 import Result from '../Result'
+import { fetchMovies } from '../api';
 
 class SearchScreen extends React.Component {
   state = {
     movie: movie,
     searchTerm: '',
+  }
+
+  componentDidMount () {
+    this.getResults()
+  }
+
+  getResults = async () => {
+    const result = await fetchMovies()
+    console.log(result[0])
+    this.setState({ movie: result[0]})
   }
 
   handleSearchTermChange = searchTerm => {
