@@ -1,11 +1,10 @@
-import 'react-native-gesture-handler';
+// import { StatusBar } from 'expo-status-bar'; <- not used in web browser, only mobile
+// import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
 import LoggedInTabs from './screens/LoggedInTabs';
-
-// To do: figure out what import 'react-native-gesture-handler'; is for?
 
 export default class App extends React.Component {
   render() {
@@ -25,6 +24,7 @@ export default class App extends React.Component {
             }}
           />
         </Stack.Navigator>
+      {/* <StatusBar style="auto" /> */}
       </NavigationContainer>
     );
   }

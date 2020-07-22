@@ -1,4 +1,3 @@
-// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -37,8 +36,6 @@ class SearchScreen extends React.Component {
           onPress={() => navigation.navigate('Details', {movie: this.state.movie} )}
         />
         <Result movie={this.state.movie} />
-        {/* To do: Figure out what StatusBar is for */}
-        {/* <StatusBar style="auto" /> */}
       </View>
     );
   }
