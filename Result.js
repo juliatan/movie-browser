@@ -10,7 +10,7 @@ const Result = props => (
   <View style={styles.result}>
     <Text>{props.movie.Title}</Text>
     <Text>{props.movie.Year}</Text>
-  </View>
+  </View> 
 )
 
 Result.propTypes = {

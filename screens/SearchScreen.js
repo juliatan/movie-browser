@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { movie } from '../mockData';
-import Result from '../Result'
+import ListMovies from '../ListMovies'
 import { fetchMovies } from '../api';
 
 class SearchScreen extends React.Component {
   state = {
-    movie: movie,
+    movies: null,
     searchTerm: '',
   }
 
@@ -16,9 +16,8 @@ class SearchScreen extends React.Component {
   }
 
   getResults = async () => {
-    const result = await fetchMovies()
-    console.log(result[0])
-    this.setState({ movie: result[0]})
+    const results = await fetchMovies()
+    this.setState({ movies: results})
   }
 
   handleSearchTermChange = searchTerm => {
@@ -27,6 +26,7 @@ class SearchScreen extends React.Component {
 
   render() {
     // imported via useNavigation above. Needed to access navigation property onPress
+    // note below code no longer works due to nested navigation - need to fix
     const { navigation } = this.props;
 
     navigation.setOptions({
@@ -44,9 +44,9 @@ class SearchScreen extends React.Component {
         />
         <Button
           title="Search"
-          onPress={() => navigation.navigate('Details', {movie: this.state.movie} )}
+          onPress={() => navigation.navigate('Details', {movie: this.state.movies[0]} )}
         />
-        <Result movie={this.state.movie} />
+        <ListMovies movies={this.state.movies} />
       </View>
     );
   }
