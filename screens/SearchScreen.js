@@ -12,11 +12,11 @@ class SearchScreen extends React.Component {
   }
 
   componentDidMount () {
-    this.getResults()
+    this.getResults(this.state.searchTerm)
   }
 
-  getResults = async () => {
-    const results = await fetchMovies()
+  getResults = async (searchTerm) => {
+    const results = await fetchMovies(searchTerm)
     this.setState({ movies: results})
   }
 
@@ -44,6 +44,10 @@ class SearchScreen extends React.Component {
         />
         <Button
           title="Search"
+          onPress={() => this.getResults(this.state.searchTerm)}
+        />
+        <Button
+          title="Details"
           onPress={() => navigation.navigate('Details', {movie: this.state.movies[0]} )}
         />
         <ListMovies movies={this.state.movies} />
