@@ -46,10 +46,6 @@ class SearchScreen extends React.Component {
           title="Search"
           onPress={() => this.getResults(this.state.searchTerm)}
         />
-        <Button
-          title="Details"
-          onPress={() => navigation.navigate('Details', {movie: this.state.movies[0]} )}
-        />
         <ListMovies movies={this.state.movies} />
       </View>
     );

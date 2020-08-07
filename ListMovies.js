@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Result from './Result';
 
 // react-native requires the argument to be called 'item'. Subbing 'movie' in doesn't work
+// See https://reactnative.dev/docs/flatlist
 const renderItem = ({ item }) => {
   return (
     <Result movie={item} />
