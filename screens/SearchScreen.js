@@ -26,14 +26,14 @@ class SearchScreen extends React.Component {
 
   render() {
     // imported via useNavigation above. Needed to access navigation property onPress
-    // note below code no longer works due to nested navigation - need to fix
     const { navigation } = this.props;
 
-    navigation.setOptions({
-      headerRight: () => (
-        <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
-      ),
-    });
+    // no longer used since I disabled header bar
+    // navigation.setOptions({
+    //   headerRight: () => (
+    //     <Button onPress={() => alert('pressed a button')} title="Add a new movie" />
+    //   ),
+    // });
 
     return (
       <View style={styles.container}>

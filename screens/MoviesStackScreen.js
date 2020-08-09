@@ -10,18 +10,14 @@ const MoviesStackScreen = () => (
     <MoviesStack.Screen
       name="Search"
       component={SearchScreen}
-      // To do: this no longer works - figure out how to connect it
       options={{
-        title: "Welcome to the Movie Database",
-        headerStyle: { backgroundColor: 'teal', },
-        tabBarLabel: 'Movies!!'
+        headerShown: false,
       }}
     />
     <MoviesStack.Screen
       name="Details"
       component={DetailScreen}
-      // note route.params comes from onPress button in Home screen
-      // To do: this no longer works - figure out how to connect it
+      // note route.params comes from onPress of Result component
       options={( {route} ) => ({ 
         title: `${route.params.movie.Title} - Details`,
         headerStyle: { backgroundColor: 'orange'}

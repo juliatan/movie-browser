@@ -14,10 +14,9 @@ const styles = StyleSheet.create({
 //     <Text>{props.movie.Year}</Text>
 //   </View> 
 // )
-
 // NOTE: changed to function to enable navigation hook
 const Result = (props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); // navigation hook
 
   return (
     <View style={styles.result}>

@@ -10,7 +10,11 @@ export default class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+        >
           <Stack.Screen
             name="Login"
             component={LoginScreen}
@@ -18,10 +22,6 @@ export default class App extends React.Component {
           <Stack.Screen
             name="LoggedIn"
             component={LoggedInTabs}
-            options={{
-              title: "Welcome to the Movie Database",
-              headerStyle: { backgroundColor: 'teal', },
-            }}
           />
         </Stack.Navigator>
       {/* <StatusBar style="auto" /> */}

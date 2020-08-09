@@ -5,8 +5,8 @@ import { login } from '../api';
 export default class LoginScreen extends React.Component {
 
   state = {
-    username: '',
-    password: '',
+    username: 'username',
+    password: 'password',
     errorMessage: '',
   }
 
