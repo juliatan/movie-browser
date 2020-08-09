@@ -16,7 +16,12 @@ export const login = async (username, password) => {
 export const fetchMovies = async (searchTerm, pageNumber) => {
   const response = await fetch(`http://www.omdbapi.com/?apikey=340ef8c9&s=${searchTerm}&page=${pageNumber}`)
 
-  // Argument has to be called Search because that's the name of the results property from the API endpoint
-  const {Search} = await response.json()
-  return Search
+  // Argument has to be called Search and Error because that's the name of the results property from the API endpoint
+  const {Search, totalResults, Error} = await response.json()
+
+  if (response.ok) {
+    return {results: Search, totalResults: totalResults}
+  } else {
+    throw new Error(Error)
+  }
 };

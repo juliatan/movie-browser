@@ -10,22 +10,32 @@ class SearchScreen extends React.Component {
     movies: null,
     searchTerm: '',
     pageNumber: 1,
+    maxPages: null
   }
 
   getResults = async (searchTerm, pageNumber) => {
-    // note: should implement error handler
-    const results = await fetchMovies(searchTerm, pageNumber)
-    this.setState({ 
-      movies: pageNumber === 1 ? results : [...this.state.movies, ...results]
-    })
+    try {
+      // if searchTerm changes, wipe movies array clean
+      const response = await fetchMovies(searchTerm, pageNumber) // 10 results per page
+      const results = response.results
+      const totalResults = response.totalResults
+
+      this.setState({ 
+        movies: pageNumber === 1 ? results : [...this.state.movies, ...results],
+        maxPages: (totalResults/10) + 1
+      })
+    } catch (err) {
+      console.error('API error')
+    }
   }
 
   loadMoreMovies = () => {
-    this.getResults(this.state.searchTerm, this.state.pageNumber + 1)
-    this.setState({
-      pageNumber: this.state.pageNumber + 1
-    })
-    // note: should implement stop when max results reached
+    if (this.state.pageNumber <= this.state.maxPages) {
+      this.getResults(this.state.searchTerm, this.state.pageNumber + 1)
+      this.setState({
+        pageNumber: this.state.pageNumber + 1
+      })
+    }
   }
 
   handleSearchTermChange = searchTerm => {
