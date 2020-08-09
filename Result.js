@@ -1,12 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types'
 import { useNavigation } from '@react-navigation/native';
-
-
-const styles = StyleSheet.create({
-  result: { padding: 20 },
-})
 
 // const Result = props => (
 //   <View style={styles.result}>
@@ -19,15 +14,19 @@ const Result = (props) => {
   const navigation = useNavigation(); // navigation hook
 
   return (
-    <View style={styles.result}>
-      <Text onPress={() => navigation.navigate('Details', {movie: props.movie})}>{props.movie.Title}</Text>
+    <TouchableOpacity style={styles.result} onPress={() => navigation.navigate('Details', {movie: props.movie})}>
+      <Text>{props.movie.Title}</Text>
       <Text>{props.movie.Year}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
 Result.propTypes = {
   movie: PropTypes.object
 }
+
+const styles = StyleSheet.create({
+  result: { padding: 20 },
+})
 
 export default Result
