@@ -13,16 +13,24 @@ class SearchScreen extends React.Component {
     maxPages: null
   }
 
+  clearOldResults = () => {
+    this.setState({
+      movies: null,
+      searchTerm: '',
+      pageNumber: 1,
+      maxPages: null
+    })
+  }
+
   getResults = async (searchTerm, pageNumber) => {
     try {
-      // if searchTerm changes, wipe movies array clean
-      const response = await fetchMovies(searchTerm, pageNumber) // 10 results per page
+      const response = await fetchMovies(searchTerm, pageNumber)
       const results = response.results
       const totalResults = response.totalResults
 
       this.setState({ 
         movies: pageNumber === 1 ? results : [...this.state.movies, ...results],
-        maxPages: (totalResults/10) + 1
+        maxPages: (totalResults/10) + 1 // 10 results per page
       })
     } catch (err) {
       console.error('API error')
@@ -59,6 +67,10 @@ class SearchScreen extends React.Component {
           placeholder="Enter movie name"
           value={this.state.searchTerm}
           onChangeText={this.handleSearchTermChange}
+        />
+        <Button
+          title="Clear old results"
+          onPress={() => this.clearOldResults()}
         />
         <Button
           title="Search"
