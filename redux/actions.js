@@ -18,7 +18,7 @@ export const returnResults = (searchTerm, pageNumber) => async dispatch => {
     const results = response.results
 
     const totalResults = response.totalResults
-    const maxPages = (totalResults/10) + 1 // 10 results per page
+    const maxPages = Math.ceil(totalResults/10) // 10 results per page
 
     if (pageNumber === 1) {
       dispatch({type: NEW_RESULTS_RECEIVED, payload: { movies: results, maxPages: maxPages }})

@@ -14,7 +14,6 @@ const resultsReducer = (state = {}, action) => {
     case RESULTS_ERROR:
       return merge(state, { resultsErr: action.payload })
     case CLEAR_RESULTS:
-      console.log(state)
       return merge(state, { movies: null, maxPages: null })
     default:
       return state
