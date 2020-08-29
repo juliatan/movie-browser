@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import PropTypes from 'prop-types'
 import { movie } from '../mockData';
 import ListMovies from '../ListMovies';
 import { connect } from 'react-redux';
@@ -10,6 +11,15 @@ class SearchScreen extends React.Component {
   state = {
     searchTerm: '',
     pageNumber: 1,
+  }
+
+  // good to include for documentation purposes
+  static propTypes = {
+    movies: PropTypes.array,
+    maxPages: PropTypes.number,
+    resultsErr: PropTypes.string,
+    returnResults: PropTypes.func,
+    clearResults: PropTypes.func,
   }
 
   clearOldResults = () => {
