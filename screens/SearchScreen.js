@@ -3,14 +3,16 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { movie } from '../mockData';
 import ListMovies from '../ListMovies';
-import { fetchMovies } from '../api';
+// import { fetchMovies } from '../api';
+import { connect } from 'react-redux';
+import { returnResults } from '../redux/actions'
 
 class SearchScreen extends React.Component {
   state = {
-    movies: null,
+    // movies: null,
     searchTerm: '',
     pageNumber: 1,
-    maxPages: null
+    // maxPages: null
   }
 
   clearOldResults = () => {
@@ -22,23 +24,28 @@ class SearchScreen extends React.Component {
     })
   }
 
-  getResults = async (searchTerm, pageNumber) => {
-    try {
-      const response = await fetchMovies(searchTerm, pageNumber)
-      const results = response.results
-      const totalResults = response.totalResults
+  // getResults = async (searchTerm, pageNumber) => {
+  //   try {
+  //     const response = await fetchMovies(searchTerm, pageNumber)
+  //     const results = response.results
+  //     const totalResults = response.totalResults
 
-      this.setState({ 
-        movies: pageNumber === 1 ? results : [...this.state.movies, ...results],
-        maxPages: (totalResults/10) + 1 // 10 results per page
-      })
-    } catch (err) {
-      console.error('API error')
-    }
+  //     this.setState({ 
+  //       movies: pageNumber === 1 ? results : [...this.state.movies, ...results],
+  //       maxPages: (totalResults/10) + 1 // 10 results per page
+  //     })
+  //   } catch (err) {
+  //     console.error('API error')
+  //   }
+  // }
+
+  getResults = async (searchTerm, pageNumber) => {
+    // this invokes function in actions.js
+    this.props.returnResults(searchTerm, pageNumber)
   }
 
   loadMoreMovies = () => {
-    if (this.state.pageNumber <= this.state.maxPages) {
+    if (this.state.pageNumber <= this.props.maxPages) {
       this.getResults(this.state.searchTerm, this.state.pageNumber + 1)
       this.setState({
         pageNumber: this.state.pageNumber + 1
@@ -76,7 +83,8 @@ class SearchScreen extends React.Component {
           title="Search"
           onPress={() => this.getResults(this.state.searchTerm, this.state.pageNumber)}
         />
-        <ListMovies movies={this.state.movies} loadMoreMovies={this.loadMoreMovies} />
+        <Text style={styles.searchError}>{ this.props.resultsErr }</Text>
+        <ListMovies movies={this.props.movies} loadMoreMovies={this.loadMoreMovies} />
       </View>
     );
   }
@@ -89,6 +97,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchError: {
+    color: 'red',
+  }
 });
 
-export default SearchScreen;
+const mapStateToProps = state => ({
+  movies: state.results.movies,
+  // pageNumber: state.results.pageNumber,
+  maxPages: state.results.maxPages,
+  resultsErr: state.results.resultsErr,
+})
+
+// connect is a higher order component provided by react-redux that allows us to map the various states in the Store 
+// via mapStateToProps which I've self-defined. This allows access to state vars via "this.props.xxx"
+// connect also allows us to call action "returnResults" in actions.js via "this.props.returnResuls".
+// The final argument below is the name of this component.
+
+export default connect(mapStateToProps, {returnResults})(SearchScreen);
