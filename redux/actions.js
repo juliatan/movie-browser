@@ -1,10 +1,11 @@
 import { fetchMovies } from '../api';
 
-// action types
+// action types -> done to prevent typos and for easier bug identification
 export const SEARCH_TERM_SENT = 'SEARCH_TERM_SENT'
 export const NEW_RESULTS_RECEIVED = 'NEW_RESULTS_RECEIVED'
 export const ADDITIONAL_RESULTS_RECEIVED = 'ADDITIONAL_RESULTS_RECEIVED'
 export const RESULTS_ERROR = 'RESULTS_ERROR'
+export const CLEAR_RESULTS = 'CLEAR_RESULTS'
 
 // async action creator
 
@@ -29,4 +30,8 @@ export const returnResults = (searchTerm, pageNumber) => async dispatch => {
     console.error('API error')
     dispatch({type: RESULTS_ERROR, payload: 'API error'})
   }
+}
+
+export const clearResults = () => dispatch => {
+  dispatch({type: CLEAR_RESULTS})
 }

@@ -3,41 +3,22 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { movie } from '../mockData';
 import ListMovies from '../ListMovies';
-// import { fetchMovies } from '../api';
 import { connect } from 'react-redux';
-import { returnResults } from '../redux/actions'
+import { returnResults, clearResults } from '../redux/actions'
 
 class SearchScreen extends React.Component {
   state = {
-    // movies: null,
     searchTerm: '',
     pageNumber: 1,
-    // maxPages: null
   }
 
   clearOldResults = () => {
+    this.props.clearResults()
     this.setState({
-      movies: null,
       searchTerm: '',
-      pageNumber: 1,
-      maxPages: null
+      pageNumber: 1
     })
   }
-
-  // getResults = async (searchTerm, pageNumber) => {
-  //   try {
-  //     const response = await fetchMovies(searchTerm, pageNumber)
-  //     const results = response.results
-  //     const totalResults = response.totalResults
-
-  //     this.setState({ 
-  //       movies: pageNumber === 1 ? results : [...this.state.movies, ...results],
-  //       maxPages: (totalResults/10) + 1 // 10 results per page
-  //     })
-  //   } catch (err) {
-  //     console.error('API error')
-  //   }
-  // }
 
   getResults = async (searchTerm, pageNumber) => {
     // this invokes function in actions.js
@@ -104,7 +85,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   movies: state.results.movies,
-  // pageNumber: state.results.pageNumber,
   maxPages: state.results.maxPages,
   resultsErr: state.results.resultsErr,
 })
@@ -114,4 +94,4 @@ const mapStateToProps = state => ({
 // connect also allows us to call action "returnResults" in actions.js via "this.props.returnResuls".
 // The final argument below is the name of this component.
 
-export default connect(mapStateToProps, {returnResults})(SearchScreen);
+export default connect(mapStateToProps, {returnResults, clearResults})(SearchScreen);

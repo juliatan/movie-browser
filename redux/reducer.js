@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SEARCH_TERM_SENT, NEW_RESULTS_RECEIVED, ADDITIONAL_RESULTS_RECEIVED, RESULTS_ERROR } from './actions'
+import { SEARCH_TERM_SENT, NEW_RESULTS_RECEIVED, ADDITIONAL_RESULTS_RECEIVED, RESULTS_ERROR, CLEAR_RESULTS } from './actions'
 
 const merge = (prev, next) => Object.assign({}, prev, next)
 
@@ -13,6 +13,9 @@ const resultsReducer = (state = {}, action) => {
       return {...state, movies: [...state.movies, ...action.payload.movies]}
     case RESULTS_ERROR:
       return merge(state, { resultsErr: action.payload })
+    case CLEAR_RESULTS:
+      console.log(state)
+      return merge(state, { movies: null, maxPages: null })
     default:
       return state
   }
