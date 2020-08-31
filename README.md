@@ -36,7 +36,7 @@ dependencies and so on).
 - There is mock OMD API data defined in [`mockData.js`](./mockData.js) if you don't want to use the API.
 
 ## Testing suite
-- [Jest](https://jestjs.io/) is used as the testing suite. A script has been added to package.json so you can run `npm t` to run the tests.
+- [Jest](https://jestjs.io/) is used as the testing suite. A script has been added to package.json so you can run `yarn test` to run the tests. Alternatively you can continuously monitor tests using `yarn test:watch`.
 - Any tests in files with a filename including `.test.js` will be run.
 
 ## To do
