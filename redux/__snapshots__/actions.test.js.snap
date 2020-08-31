@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returnResults returns actions dispatches ADDITIONAL_RESULTS_RECEIVED with search term and page 2 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "movies": Array [],
+    },
+    "type": "ADDITIONAL_RESULTS_RECEIVED",
+  },
+]
+`;
+
+exports[`returnResults returns actions dispatches NEW_RESULTS_RECEIVED with search term and page 1 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "maxPages": 2,
+      "movies": Array [],
+    },
+    "type": "NEW_RESULTS_RECEIVED",
+  },
+]
+`;
+
+exports[`returnResults returns actions dispatches RESULTS_ERROR with incorrect arguments 1`] = `
+Array [
+  Object {
+    "payload": "API error",
+    "type": "RESULTS_ERROR",
+  },
+]
+`;
