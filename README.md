@@ -15,6 +15,7 @@ and view additional information about any movies they select.
   - `redux-persist`
   - `redux-thunk`
   - `jest`
+  - [Jest Expo](https://github.com/expo/expo/tree/master/packages/jest-expo) for integration tests to test Expo / React Native.
 
 ## App features
 - Multiple `StackNavigator`s through React Navigation.
@@ -36,8 +37,11 @@ dependencies and so on).
 - There is mock OMD API data defined in [`mockData.js`](./mockData.js) if you don't want to use the API.
 
 ## Testing suite
-- [Jest](https://jestjs.io/) is used as the testing suite. A script has been added to package.json so you can run `yarn test` to run the tests. Alternatively you can continuously monitor tests using `yarn test:watch`.
+- [Jest](https://jestjs.io/) is used as the testing suite. A script has been added to package.json so you can run `yarn test` to run the unit tests. Alternatively you can continuously monitor tests using `yarn test:watch`.
 - Any tests in files with a filename including `.test.js` will be run.
+- Jest tests Redux actions and reducer code only at the moment.
+- Jest Expo can be used to test any Expo or React Native code. For practice, I created a `components` folder and created `MyButton` component to test this independently of the rest of the app.
+- Run `yarn test --coverage` to check coverage.
 
 ## To do
 - Include a new screen that provides details for a particular movie.
