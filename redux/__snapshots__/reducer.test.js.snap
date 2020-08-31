@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`results reducer successfully receives new results 1`] = `
+Object {
+  "results": Object {},
+}
+`;

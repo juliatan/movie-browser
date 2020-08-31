@@ -1,11 +1,14 @@
 import * as actions from './actions'
 
+// non-async action testing
 test('clearResults returns an action', () => {
   expect(actions.clearResults()).toEqual({
     type: actions.CLEAR_RESULTS
   })
 })
 
+// async actions testing
+// describe allows us to group similar unit tests together
 describe('returnResults returns actions', () => {
   const fakeFetchedObject = {results: [], totalResults: 20}
   const fakeResultsObject1 = {movies: [], maxPages: 2}
@@ -34,6 +37,7 @@ describe('returnResults returns actions', () => {
     const mockDispatch = jest.fn()
     await actions.returnResults('test', 1, mockFetch)(mockDispatch)
     expect(mockDispatch.mock.calls[1][0]).toEqual({type: actions.NEW_RESULTS_RECEIVED, payload: fakeResultsObject1})
+    // note run for the first time to save snapshot that takes the form you want it to be
     expect(mockDispatch.mock.calls[1]).toMatchSnapshot()
   })
 
