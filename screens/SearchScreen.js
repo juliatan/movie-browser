@@ -59,6 +59,8 @@ class SearchScreen extends React.Component {
     //   ),
     // });
 
+    console.log(this.props.movies)
+
     return (
       <View style={styles.container}>
         <TextInput
