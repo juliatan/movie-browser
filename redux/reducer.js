@@ -23,7 +23,7 @@ const resultsReducer = (state = {}, action) => {
     case RESULTS_ERROR:
       return merge(state, { resultsErr: action.payload });
     case CLEAR_RESULTS:
-      return merge(state, { movies: null, maxPages: null });
+      return merge(state, { movies: null, maxPages: null, resultsErr: null });
     default:
       return state;
   }

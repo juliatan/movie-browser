@@ -42,7 +42,7 @@ export const returnResults = (
       });
     }
   } catch (err) {
-    console.error('API error');
+    // console.error('API error');
     dispatch({ type: RESULTS_ERROR, payload: 'API error' });
   }
 };
