@@ -46,16 +46,18 @@ export default class LoginScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.error}>{this.state.errorMessage}</Text>
         <TextInput
+          style={styles.input}
           placeholder="Username"
           value={this.state.username}
           onChangeText={this.handleUsernameChange}
         />
         <TextInput
+          style={styles.input}
           placeholder="Password"
           value={this.state.password}
           onChangeText={this.handlePasswordChange}
         />
-        <Button title="Log in" onPress={this.authenticate} />
+        <Button color="#5f9ea0" title="Log in" onPress={this.authenticate} />
       </View>
     );
   }
@@ -68,7 +70,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    borderWidth: '1px',
+    borderColor: 'cadetblue',
+    borderRadius: '8px',
+    padding: '10px',
+    width: '50%',
+    marginBottom: '10px'
+  },
   error: {
     color: 'red',
-  },
+  }
 });
