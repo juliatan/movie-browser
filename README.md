@@ -35,6 +35,7 @@ libraries, as well as all of those libraries' dependencies (and the dependencies
 dependencies and so on).
 - Start the Expo server in terminal with `expo start`.
 - There is mock OMD API data defined in [`mockData.js`](./mockData.js) if you don't want to use the API.
+- Note that I've left my OMD API key in there for ease of testing - you should get your own, it's free!
 
 ## Testing suite
 - [Jest](https://jestjs.io/) is used as the testing suite. A script has been added to package.json so you can run `yarn test` to run the unit tests. Alternatively you can continuously monitor tests using `yarn test:watch`.
@@ -46,4 +47,4 @@ dependencies and so on).
 ## To do
 - Include a new screen that provides details for a particular movie.
 - ES6 linter (and perhaps install [Airbnb's JS guide](https://github.com/airbnb/javascript/tree/master/react)?).
-- Improve the aesthetics of the app. No thought has been placed into the design currently and I've used it more as a practice ground to understand different React Native components.
+- Improve the aesthetics of the app. No thought has been placed into the design currently and I've used it more as a practice ground to understand different React Native components and how data flows through the app.
