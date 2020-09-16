@@ -19,6 +19,7 @@ const ListMovies = props =>
     renderItem={renderItem}
     data={props.movies}
     keyExtractor={(movie) => movie.imdbID} 
+    key={(movie) => movie.imdbID} 
     onEndReachedThreshold={0.5}
     onEndReached={props.loadMoreMovies}
   />

@@ -29,12 +29,12 @@ class SearchScreen extends React.Component {
       pageNumber: 1
     })
   }
-
+  
   getResults = async (searchTerm, pageNumber) => {
     // this invokes function in actions.js
     this.props.returnResults(searchTerm, pageNumber)
   }
-
+  
   loadMoreMovies = () => {
     if (this.state.pageNumber <= this.props.maxPages) {
       this.getResults(this.state.searchTerm, this.state.pageNumber + 1)
