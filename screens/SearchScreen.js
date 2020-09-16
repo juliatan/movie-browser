@@ -62,20 +62,27 @@ class SearchScreen extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput
+          style={styles.input}
           placeholder="Enter movie name"
           value={this.state.searchTerm}
           onChangeText={this.handleSearchTermChange}
         />
-        <Button
-          title="Clear old results"
-          onPress={() => this.clearOldResults()}
-        />
-        <Button
-          title="Search"
-          onPress={() =>
-            this.getResults(this.state.searchTerm, this.state.pageNumber)
-          }
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            style={styles.button}
+            color="indianred"
+            title="Clear results"
+            onPress={() => this.clearOldResults()}
+          />
+          <Button
+            style={styles.button}
+            color="#5f9ea0"
+            title="Search"
+            onPress={() =>
+              this.getResults(this.state.searchTerm, this.state.pageNumber)
+            }
+          />
+        </View>
         <Text style={styles.searchError}>{this.props.resultsErr}</Text>
         <ListMovies
           movies={this.props.movies}
@@ -92,6 +99,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  input: {
+    marginTop: '40px',
+    marginBottom: '40px',
+    borderWidth: '1px',
+    borderColor: 'cadetblue',
+    borderRadius: '8px',
+    padding: '10px',
+    width: '50%'
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '50%',
+    marginBottom: '40px'
   },
   searchError: {
     color: 'red',

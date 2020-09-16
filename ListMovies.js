@@ -31,7 +31,8 @@ ListMovies.propTypes = {
 const styles = StyleSheet.create({
   flatlist: {
     flex: 1,
-    backgroundColor: 'cyan',
+    backgroundColor: 'lightgrey',
+    width: '50%'
   },
 });
 
