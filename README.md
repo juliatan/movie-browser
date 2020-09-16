@@ -17,6 +17,8 @@ and view additional information about any movies they select.
   - `redux-persist`
   - `redux-thunk`
   - `jest`
+  - `eslint`
+  - `prettier`
   - [Jest Expo](https://github.com/expo/expo/tree/master/packages/jest-expo) for integration tests to test Expo / React Native.
 
 ## App features
@@ -39,7 +41,7 @@ and view additional information about any movies they select.
   dependencies and so on).
 - Start the Expo server in terminal with `expo start`.
 - There is mock OMD API data defined in [`mockData.js`](./mockData.js) if you don't want to use the API.
-- Note that I've left my OMD API key in there for ease of testing - you should get your own, it's free!
+- Note that I've left my OMD API key in there for ease of testing - you should get your own, it's free (or at the very least, don't misuse this key)!
 
 ## Testing suite
 
@@ -52,5 +54,4 @@ and view additional information about any movies they select.
 ## To do
 
 - Include a new screen that provides details for a particular movie.
-- ES6 linter (and perhaps install [Airbnb's JS guide](https://github.com/airbnb/javascript/tree/master/react)?).
 - Improve the aesthetics of the app. No thought has been placed into the design currently and I've used it more as a practice ground to understand different React Native components and how data flows through the app.
