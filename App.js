@@ -3,12 +3,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import LoginScreen from './screens/LoginScreen';
 import LoggedInTabs from './screens/LoggedInTabs';
-import { store, persistor } from './redux/store'
+import { store, persistor } from './redux/store';
 
 export default class App extends React.Component {
   render() {
@@ -18,19 +18,13 @@ export default class App extends React.Component {
           <NavigationContainer>
             <Stack.Navigator
               screenOptions={{
-                headerShown: false
+                headerShown: false,
               }}
             >
-              <Stack.Screen
-                name="Login"
-                component={LoginScreen}
-              />
-              <Stack.Screen
-                name="LoggedIn"
-                component={LoggedInTabs}
-              />
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="LoggedIn" component={LoggedInTabs} />
             </Stack.Navigator>
-          {/* <StatusBar style="auto" /> */}
+            {/* <StatusBar style="auto" /> */}
           </NavigationContainer>
         </PersistGate>
       </Provider>

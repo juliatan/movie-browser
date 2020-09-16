@@ -18,12 +18,12 @@ const MoviesStackScreen = () => (
       name="Details"
       component={DetailScreen}
       // note route.params comes from onPress of Result component
-      options={( {route} ) => ({ 
+      options={({ route }) => ({
         title: `${route.params.movie.Title} - Details`,
-        headerStyle: { backgroundColor: 'orange'}
+        headerStyle: { backgroundColor: 'orange' },
       })}
     />
   </MoviesStack.Navigator>
-)
+);
 
-export default MoviesStackScreen
+export default MoviesStackScreen;

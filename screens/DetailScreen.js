@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Result from '../Result'
+import Result from '../Result';
 
 const DetailScreen = ({ route, navigation }) => (
   <View style={styles.container}>
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailScreen
+export default DetailScreen;

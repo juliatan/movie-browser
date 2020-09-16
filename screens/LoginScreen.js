@@ -3,20 +3,22 @@ import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { login } from '../api';
 
 export default class LoginScreen extends React.Component {
-
   state = {
     username: 'username',
     password: 'password',
     errorMessage: '',
-  }
+  };
 
   authenticate = async () => {
-    if (this.state.username === 'username' && this.state.password === 'password') {
-      this.props.navigation.navigate('LoggedIn')
+    if (
+      this.state.username === 'username' &&
+      this.state.password === 'password'
+    ) {
+      this.props.navigation.navigate('LoggedIn');
     } else {
-      this.setState({errorMessage: 'Wrong details'})
+      this.setState({ errorMessage: 'Wrong details' });
     }
-  }
+  };
 
   // commenting out due to CORS error
   // authenticate = async () => {
@@ -29,17 +31,17 @@ export default class LoginScreen extends React.Component {
   //   }
   // }
 
-  handleUsernameChange = (username) => { 
-    this.setState({username})
-    // same as: 
+  handleUsernameChange = (username) => {
+    this.setState({ username });
+    // same as:
     // this.setState({username: username})
-  }
+  };
 
-  handlePasswordChange = (password) => { 
-    this.setState({password})
-  }
+  handlePasswordChange = (password) => {
+    this.setState({ password });
+  };
 
-  render () {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.error}>{this.state.errorMessage}</Text>
@@ -53,12 +55,9 @@ export default class LoginScreen extends React.Component {
           value={this.state.password}
           onChangeText={this.handlePasswordChange}
         />
-        <Button
-          title="Log in"
-          onPress={this.authenticate}
-        />
+        <Button title="Log in" onPress={this.authenticate} />
       </View>
-    )
+    );
   }
 }
 
@@ -70,6 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   error: {
-    color: 'red'
+    color: 'red',
   },
 });

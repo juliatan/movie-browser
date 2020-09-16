@@ -25,16 +25,14 @@ const LoggedInTabs = () => (
         return <Ionicons name={iconName} size={size} color={color} />;
       },
     })}
-
     tabBarOptions={{
       activeTintColor: 'teal',
       inactiveTintColor: 'gray',
     }}
-
   >
     <Tab.Screen name="Database" component={MoviesStackScreen} />
     <Tab.Screen name="Settings" component={SettingsScreen} />
   </Tab.Navigator>
-)
+);
 
-export default LoggedInTabs
+export default LoggedInTabs;
